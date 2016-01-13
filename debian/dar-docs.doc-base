@@ -1,0 +1,9 @@
+Document: dar
+Title: DAR's Documentation
+Author: Denis Corbin <dar.linux@free.fr>
+Abstract: This is the summary page for dar's documentation
+Section: Text
+
+Format: HTML
+Index: /usr/share/doc/dar-docs/index.html
+Files: /usr/share/doc/dar-docs/*.html /usr/share/doc/dar-docs/html/*.html

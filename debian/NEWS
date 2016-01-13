@@ -1,0 +1,10 @@
+dar (2.4.2-1) unstable; urgency=low
+
+  dar_static is no longer built by this package. This is a work around due to a
+  bug in an unrelated package, see http://bugs.debian.org/632889
+
+  If upgrading from dar 2.3.x, you may need to alter backup scripts to add the
+  "--alter=secu" parameter. See http://bugs.debian.org/637991 and
+  http://dar.linux.free.fr/doc/FAQ.html#security for details.
+
+ -- Brian May <bam@debian.org>  Tue, 18 Oct 2011 11:53:26 +1100

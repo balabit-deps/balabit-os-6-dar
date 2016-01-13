@@ -1,0 +1,12 @@
+etc/darrc
+usr/bin/dar
+usr/bin/dar_cp
+usr/bin/dar_manager
+usr/bin/dar_slave
+usr/bin/dar_xform
+usr/share/locale/
+usr/share/man/man1/dar.1
+usr/share/man/man1/dar_cp.1
+usr/share/man/man1/dar_manager.1
+usr/share/man/man1/dar_slave.1
+usr/share/man/man1/dar_xform.1

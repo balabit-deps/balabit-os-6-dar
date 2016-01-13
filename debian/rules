@@ -1,0 +1,31 @@
+#!/usr/bin/make -f
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/autotools.mk
+include /usr/share/cdbs/1/rules/autoreconf.mk
+
+DEB_CONFIGURE_EXTRA_FLAGS := --disable-upx --enable-mode=64
+DEB_CONFIGURE_EXTRA_FLAGS += --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH)
+
+DEB_DH_INSTALL_SOURCEDIR = debian/tmp
+
+DEB_INSTALL_DOCS_ALL =
+
+binary-post-install/dar::
+	sed -e "s%SOMEPATH%/usr/share/dar%g" doc/samples/dar_par.dcf > debian/dar/usr/share/dar/dar_par.dcf
+	cp doc/samples/dar_par_create.duc debian/dar/usr/share/dar
+	cp doc/samples/dar_par_test.duc debian/dar/usr/share/dar
+
+binary-post-install/dar-docs::
+	mv debian/dar-docs/usr/share/dar/* debian/dar-docs/usr/share/doc/dar-docs
+	rmdir debian/dar-docs/usr/share/dar
+	rm debian/dar-docs/usr/share/doc/dar-docs/samples/dar_par.dcf
+	rm debian/dar-docs/usr/share/doc/dar-docs/samples/dar_par_create.duc
+	rm debian/dar-docs/usr/share/doc/dar-docs/samples/dar_par_test.duc
+	mv debian/dar-docs/usr/share/doc/dar-docs/samples debian/dar-docs/usr/share/doc/dar-docs/examples
+	chmod 644  debian/dar-docs/usr/share/doc/dar-docs/examples/MyBackup.sh.tar.gz
+	rm debian/dar-docs/usr/share/doc/dar-docs/html/jquery.js
+
+binary-post-install/dar-static::
+	mv debian/dar-static/usr/share/man/man1/dar.1 debian/dar-static/usr/share/man/man1/dar_static.1
+	mkdir -p debian/dar-static/usr/share/lintian/overrides
+	cp -p debian/dar-static.lintian debian/dar-static/usr/share/lintian/overrides/dar-static

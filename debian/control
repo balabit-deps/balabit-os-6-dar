@@ -1,0 +1,64 @@
+Source: dar
+Section: utils
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Laszlo Boszormenyi (GCS) <gcs@debian.org>
+Build-Depends: debhelper (>= 9), zlib1g-dev, libattr1-dev, libbz2-dev, e2fslibs-dev, libgcrypt-dev, libgpgme11-dev, cdbs, doxygen, groff, autotools-dev, liblzo2-dev, dh-autoreconf
+Homepage: http://dar.linux.free.fr/
+Standards-Version: 3.9.6
+
+Package: libdar-dev
+Section: libdevel
+Architecture: any
+Depends: libdar64-5000 (= ${binary:Version}), ${misc:Depends}
+Description: Disk ARchive: Development files for shared library
+ Full featured archiver with support for differential backups, slices,
+ compression, ATTR/ACL support. DAR also supports Pipes for remote
+ operations, including with ssh.
+
+Package: libdar64-5000
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libdar64-5000v5
+Replaces: libdar64-5000v5
+Description: Disk ARchive: Shared library
+ Full featured archiver with support for differential backups, slices,
+ compression, ATTR/ACL support. DAR also supports Pipes for remote
+ operations, including with ssh.
+ .
+ This package contains the shared library for accessing archives.
+
+Package: dar-static
+Architecture: any
+Depends: ${misc:Depends}
+Built-Using: glibc (= 2.19-18), attr (= 1:2.4.47-2), bzip2 (= 1.0.6-7), libgcrypt20 (= 1.6.3-2), libgpg-error (= 1.17-3), lzo2 (= 2.08-1.2), zlib (= 1:1.2.8.dfsg-2)
+Description: Disk ARchive: Backup directory tree and files
+ Full featured archiver with support for differential backups, slices,
+ compression, ATTR/ACL support. DAR also supports Pipes for remote
+ operations, including with ssh.
+ .
+ This package contains the static binary, dar_static.
+
+Package: dar
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: par2, dar-docs
+Description: Disk ARchive: Backup directory tree and files
+ Full featured archiver with support for differential backups, slices,
+ compression, ATTR/ACL support. DAR also supports Pipes for remote
+ operations, including with ssh.
+
+Package: dar-docs
+Section: doc
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Disk ARchive: Backup directory tree and files
+ Full featured archiver with support for differential backups, slices,
+ compression, ATTR/ACL support. DAR also supports Pipes for remote
+ operations, including with ssh.
+ .
+ This package contains the documentation and example files.
+

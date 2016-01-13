@@ -1,0 +1,12 @@
+This package was debianized by Brian May <bam@debian.org> on
+Sat, 28 Dec 2002 10:15:33 +1100.
+Packaging was taken over by Laszlo Boszormenyi (GCS) <gcs@debian.org> on
+Fri, 24 Oct 2014 06:39:04 +0000.
+
+It was downloaded from http://dar.linux.free.fr/
+
+Upstream Author: Denis Corbin <dar.linux@free.fr>
+
+Copyright (C) 2002-2052 Denis Corbin
+
+GPL, see /usr/share/common-licenses/GPL-2.
