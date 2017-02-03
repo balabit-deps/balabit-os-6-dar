@@ -1,0 +1,538 @@
+/* config.h.in.  Generated from configure.ac by autoheader.  */
+
+/* backtrace() call supported */
+#undef BACKTRACE_AVAILABLE
+
+/* header and linking is available to have strong encryption works */
+#undef CRYPTO_AVAILABLE
+
+/* dar and dar_suite version, definition in configure.ac */
+#undef DAR_VERSION
+
+/* if defined, activates support for Extended Attributes */
+#undef EA_SUPPORT
+
+/* Define to 1 if translation of program messages to the user's native
+   language is requested. */
+#undef ENABLE_NLS
+
+/* furtive read mode is available */
+#undef FURTIVE_READ_MODE_AVAILABLE
+
+/* minimum version expected of GPGME */
+#undef GPGME_MIN_VERSION
+
+/* GPGME is available to support public key based ciphering */
+#undef GPGME_SUPPORT
+
+/* Define to 1 if you have the <arpa/inet.h> header file. */
+#undef HAVE_ARPA_INET_H
+
+/* Define to 1 if you have the <attr/xattr.h> header file. */
+#undef HAVE_ATTR_XATTR_H
+
+/* bzlib.h header file is available */
+#undef HAVE_BZLIB_H
+
+/* whether the system has support for POSIX.1e capabilities */
+#undef HAVE_CAPABILITIES
+
+/* Define to 1 if you have the Mac OS X function CFLocaleCopyCurrent in the
+   CoreFoundation framework. */
+#undef HAVE_CFLOCALECOPYCURRENT
+
+/* Define to 1 if you have the Mac OS X function CFPreferencesCopyAppValue in
+   the CoreFoundation framework. */
+#undef HAVE_CFPREFERENCESCOPYAPPVALUE
+
+/* Define to 1 if you have the `ctime_r' function. */
+#undef HAVE_CTIME_R
+
+/* Define to 1 if you have the <ctype.h> header file. */
+#undef HAVE_CTYPE_H
+
+/* Define if the GNU dcgettext() function is already present or preinstalled.
+   */
+#undef HAVE_DCGETTEXT
+
+/* Define to 1 if you have the declaration of `sys_siglist', and to 0 if you
+   don't. */
+#undef HAVE_DECL_SYS_SIGLIST
+
+/* Define to 1 if you have the <dirent.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_DIRENT_H
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* whether the system has the necessary routine to handle Door files */
+#undef HAVE_DOOR
+
+/* Define to 1 if you have the <errno.h> header file. */
+#undef HAVE_ERRNO_H
+
+/* Define to 1 if you have the <execinfo.h> header file. */
+#undef HAVE_EXECINFO_H
+
+/* Define to 1 if you have the <fcntl.h> header file. */
+#undef HAVE_FCNTL_H
+
+/* whether the system provides fdatasync() system call */
+#undef HAVE_FDATASYNC
+
+/* Define to 1 if you have the `fdopendir' function. */
+#undef HAVE_FDOPENDIR
+
+/* Define to 1 if your system has a working POSIX `fnmatch' function. */
+#undef HAVE_FNMATCH
+
+/* Define to 1 if you have the <fnmatch.h> header file. */
+#undef HAVE_FNMATCH_H
+
+/* Define to 1 if you have the `fork' function. */
+#undef HAVE_FORK
+
+/* gcrypt.h header file is available */
+#undef HAVE_GCRYPT_H
+
+/* Define to 1 if you have the `getgrnam_r' function. */
+#undef HAVE_GETGRNAM_R
+
+/* Define to 1 if you have the <getopt.h> header file. */
+#undef HAVE_GETOPT_H
+
+/* a getopt() call is declared in <unistd.h> */
+#undef HAVE_GETOPT_IN_UNISTD_H
+
+/* whether getopt_long() is available */
+#undef HAVE_GETOPT_LONG
+
+/* a getopt_long() call is declared in <unistd.h> */
+#undef HAVE_GETOPT_LONG_IN_UNISTD_H
+
+/* Define to 1 if you have the `getpwnam_r' function. */
+#undef HAVE_GETPWNAM_R
+
+/* Define if the GNU gettext() function is already present or preinstalled. */
+#undef HAVE_GETTEXT
+
+/* Define to 1 if you have the <gpgme.h> header file. */
+#undef HAVE_GPGME_H
+
+/* Define to 1 if you have the <grp.h> header file. */
+#undef HAVE_GRP_H
+
+/* Define if you have the iconv() function and it works. */
+#undef HAVE_ICONV
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the `lchown' function. */
+#undef HAVE_LCHOWN
+
+/* Define to 1 if you have the `attr' library (-lattr). */
+#undef HAVE_LIBATTR
+
+/* Define to 1 if you have the `bz2' library (-lbz2). */
+#undef HAVE_LIBBZ2
+
+/* Define to 1 if you have the `c' library (-lc). */
+#undef HAVE_LIBC
+
+/* Define to 1 if you have the `cap' library (-lcap). */
+#undef HAVE_LIBCAP
+
+/* Define to 1 if you have the `dl' library (-ldl). */
+#undef HAVE_LIBDL
+
+/* Define to 1 if you have the `execinfo' library (-lexecinfo). */
+#undef HAVE_LIBEXECINFO
+
+/* Define to 1 if you have the `gcrypt' library (-lgcrypt). */
+#undef HAVE_LIBGCRYPT
+
+/* Define to 1 if you have the `gnugetopt' library (-lgnugetopt). */
+#undef HAVE_LIBGNUGETOPT
+
+/* Define to 1 if you have the `gpg-error' library (-lgpg-error). */
+#undef HAVE_LIBGPG_ERROR
+
+/* Define to 1 if you have the <libintl.h> header file. */
+#undef HAVE_LIBINTL_H
+
+/* Define to 1 if you have the `lzma' library (-llzma). */
+#undef HAVE_LIBLZMA
+
+/* Define to 1 if you have the `lzo2' library (-llzo2). */
+#undef HAVE_LIBLZO2
+
+/* Define to 1 if you have the `nsl' library (-lnsl). */
+#undef HAVE_LIBNSL
+
+/* Define to 1 if you have the `pthread' library (-lpthread). */
+#undef HAVE_LIBPTHREAD
+
+/* Define to 1 if you have the `socket' library (-lsocket). */
+#undef HAVE_LIBSOCKET
+
+/* Define to 1 if you have the `threadar' library (-lthreadar). */
+#undef HAVE_LIBTHREADAR
+
+/* Define to 1 if you have the <libthreadar/libthreadar.hpp> header file. */
+#undef HAVE_LIBTHREADAR_LIBTHREADAR_HPP
+
+/* Define to 1 if you have the `z' library (-lz). */
+#undef HAVE_LIBZ
+
+/* Define to 1 if you have the <limits.h> header file. */
+#undef HAVE_LIMITS_H
+
+/* Define to 1 if you have the <linux/capability.h> header file. */
+#undef HAVE_LINUX_CAPABILITY_H
+
+/* Define to 1 if you have the `localtime_r' function. */
+#undef HAVE_LOCALTIME_R
+
+/* Define to 1 if `lstat' has the bug that it succeeds when given the
+   zero-length file name argument. */
+#undef HAVE_LSTAT_EMPTY_STRING_BUG
+
+/* if lutimes() system call is available */
+#undef HAVE_LUTIMES
+
+/* lzma.h header file is available */
+#undef HAVE_LZMA_H
+
+/* lzo/lzo1x.h header file is available */
+#undef HAVE_LZO_LZO1X_H
+
+/* Define to 1 if your system has a GNU libc compatible `malloc' function, and
+   to 0 otherwise. */
+#undef HAVE_MALLOC
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the `mkdir' function. */
+#undef HAVE_MKDIR
+
+/* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
+#undef HAVE_NDIR_H
+
+/* Define to 1 if you have the <netinet/in.h> header file. */
+#undef HAVE_NETINET_IN_H
+
+/* the optreset external variable exists to reset getopt standard call */
+#undef HAVE_OPTRESET
+
+/* whether the system has support for posix_fadvise() */
+#undef HAVE_POSIX_FADVISE
+
+/* Define to 1 if you have the <pthread.h> header file. */
+#undef HAVE_PTHREAD_H
+
+/* Define to 1 if you have the <pwd.h> header file. */
+#undef HAVE_PWD_H
+
+/* Define to 1 if you have the `readdir_r' function. */
+#undef HAVE_READDIR_R
+
+/* Define to 1 if you have the `regcomp' function. */
+#undef HAVE_REGCOMP
+
+/* Define to 1 if you have the <regex.h> header file. */
+#undef HAVE_REGEX_H
+
+/* Define to 1 if you have the `rmdir' function. */
+#undef HAVE_RMDIR
+
+/* Define to 1 if you have the <signal.h> header file. */
+#undef HAVE_SIGNAL_H
+
+/* Define to 1 if `stat' has the bug that it succeeds when given the
+   zero-length file name argument. */
+#undef HAVE_STAT_EMPTY_STRING_BUG
+
+/* Define to 1 if you have the <stddef.h> header file. */
+#undef HAVE_STDDEF_H
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdio.h> header file. */
+#undef HAVE_STDIO_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the `strerror_r' function. */
+#undef HAVE_STRERROR_R
+
+/* strerror_r() returns a char * */
+#undef HAVE_STRERROR_R_CHAR_PTR
+
+/* Define to 1 if you have the `strerr-or' function. */
+#undef HAVE_STRERR_OR
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if `st_rdev' is a member of `struct stat'. */
+#undef HAVE_STRUCT_STAT_ST_RDEV
+
+/* Define to 1 if you have the <sys/capability.h> header file. */
+#undef HAVE_SYS_CAPABILITY_H
+
+/* Define to 1 if you have the <sys/dir.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_SYS_DIR_H
+
+/* Define to 1 if you have the <sys/ioctl.h> header file. */
+#undef HAVE_SYS_IOCTL_H
+
+/* Define to 1 if you have the <sys/ndir.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_SYS_NDIR_H
+
+/* Define to 1 if you have the <sys/socket.h> header file. */
+#undef HAVE_SYS_SOCKET_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/time.h> header file. */
+#undef HAVE_SYS_TIME_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <sys/un.h> header file. */
+#undef HAVE_SYS_UN_H
+
+/* Define to 1 if you have the <sys/utsname.h> header file. */
+#undef HAVE_SYS_UTSNAME_H
+
+/* Define to 1 if you have <sys/wait.h> that is POSIX.1 compatible. */
+#undef HAVE_SYS_WAIT_H
+
+/* Define to 1 if you have the <sys/xattr.h> header file. */
+#undef HAVE_SYS_XATTR_H
+
+/* Define to 1 if you have the <termios.h> header file. */
+#undef HAVE_TERMIOS_H
+
+/* Define to 1 if you have the <time.h> header file. */
+#undef HAVE_TIME_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define to 1 if you have the `utime' function. */
+#undef HAVE_UTIME
+
+/* Define to 1 if you have the <utimes.h> header file. */
+#undef HAVE_UTIMES_H
+
+/* Define to 1 if you have the <utime.h> header file. */
+#undef HAVE_UTIME_H
+
+/* Define to 1 if `utime(file, NULL)' sets file's timestamp to the present. */
+#undef HAVE_UTIME_NULL
+
+/* Define to 1 if you have the `vfork' function. */
+#undef HAVE_VFORK
+
+/* Define to 1 if you have the <vfork.h> header file. */
+#undef HAVE_VFORK_H
+
+/* Define to 1 if you have the <wchar.h> header file. */
+#undef HAVE_WCHAR_H
+
+/* Define to 1 if you have the <wctype.h> header file. */
+#undef HAVE_WCTYPE_H
+
+/* Define to 1 if `fork' works. */
+#undef HAVE_WORKING_FORK
+
+/* Define to 1 if `vfork' works. */
+#undef HAVE_WORKING_VFORK
+
+/* zlib.h header file is available */
+#undef HAVE_ZLIB_H
+
+/* Define as const if the declaration of iconv() needs const. */
+#undef ICONV_CONST
+
+/* header and linking is available to have libbz2 functions */
+#undef LIBBZ2_AVAILABLE
+
+/* if defined, activates the support for HFS+ create time FSA */
+#undef LIBDAR_BIRTHTIME
+
+/* if defined, builds a very slow executable */
+#undef LIBDAR_DEBUG_MEMORY
+
+/* activation of speed optimization for large directories */
+#undef LIBDAR_FAST_DIR
+
+/* support for timestamps microsecond read accuracy */
+#undef LIBDAR_MICROSECOND_READ_ACCURACY
+
+/* support for timestamps microsecond write accuracy */
+#undef LIBDAR_MICROSECOND_WRITE_ACCURACY
+
+/* if defined, activates the ext2/3 nodump flag feature */
+#undef LIBDAR_NODUMP_FEATURE
+
+/* if defined, informs the code that no optimization has been used for
+   compilation */
+#undef LIBDAR_NO_OPTIMIZATION
+
+/* if set activates specific new and delete operator which do better
+   allocation for a lot of small items */
+#undef LIBDAR_SPECIAL_ALLOC
+
+/* header and linking is available to have liblzma functions */
+#undef LIBLZMA_AVAILABLE
+
+/* header and linking is available to have lzo functions */
+#undef LIBLZO2_AVAILABLE
+
+/* when libthreadar could be found and linked against */
+#undef LIBTHREADAR_AVAILABLE
+
+/* header and linking is available to have libz functions */
+#undef LIBZ_AVAILABLE
+
+/* Define to 1 if `lstat' dereferences a symlink specified with a trailing
+   slash. */
+#undef LSTAT_FOLLOWS_SLASHED_SYMLINK
+
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#undef LT_OBJDIR
+
+/* Define to 1 if `major', `minor', and `makedev' are declared in <mkdev.h>.
+   */
+#undef MAJOR_IN_MKDEV
+
+/* Define to 1 if `major', `minor', and `makedev' are declared in
+   <sysmacros.h>. */
+#undef MAJOR_IN_SYSMACROS
+
+/* libgcrypt minimum version */
+#undef MIN_VERSION_GCRYPT
+
+/* ligcrypt minimum version without hash bug */
+#undef MIN_VERSION_GCRYPT_HASH_BUG
+
+/* Some *_r() stdlib call are missing to permit complete thread-safe support
+   by libdar */
+#undef MISSING_REENTRANT_LIBCALL
+
+/* POSIX mutex (pthread_mutex_t) is available */
+#undef MUTEX_WORKS
+
+/* if defined, activates support for Mac OS X Extended Attributes */
+#undef OSX_EA_SUPPORT
+
+/* manually set CPU's registers' size */
+#undef OS_BITS
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Define as the return type of signal handlers (`int' or `void'). */
+#undef RETSIGTYPE
+
+/* The size of `off_t', as computed by sizeof. */
+#undef SIZEOF_OFF_T
+
+/* The size of `size_t', as computed by sizeof. */
+#undef SIZEOF_SIZE_T
+
+/* The size of `time_t', as computed by sizeof. */
+#undef SIZEOF_TIME_T
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Define to 1 if you can safely include both <sys/time.h> and <time.h>. */
+#undef TIME_WITH_SYS_TIME
+
+/* Version number of package */
+#undef VERSION
+
+/* Define on Darwin to activate all library features */
+#undef _DARWIN_C_SOURCE
+
+/* Enable large inode numbers on Mac OS X 10.5.  */
+#ifndef _DARWIN_USE_64_BIT_INODE
+# define _DARWIN_USE_64_BIT_INODE 1
+#endif
+
+/* Number of bits in a file offset, on hosts where this is settable. */
+#undef _FILE_OFFSET_BITS
+
+/* Define on Linux to activate all library features */
+#undef _GNU_SOURCE
+
+/* Define for large files, on AIX-style hosts. */
+#undef _LARGE_FILES
+
+/* Define on NetBSD to activate all library features */
+#undef _NETBSD_SOURCE
+
+/* activates POSIX.1-2008 symbols in order to allow microsecond time setting,
+   as well as ctime_r() call */
+#undef _XOPEN_SOURCE
+
+/* Define on FreeBSD to activate all library features */
+#undef __BSD_VISIBLE
+
+/* Define to empty if `const' does not conform to ANSI C. */
+#undef const
+
+/* Define to `__inline__' or `__inline' if that's what the C compiler
+   calls it, or to nothing if 'inline' is not supported under any name.  */
+#ifndef __cplusplus
+#undef inline
+#endif
+
+/* Define to rpl_malloc if the replacement function should be used. */
+#undef malloc
+
+/* Define to `long int' if <sys/types.h> does not define. */
+#undef off_t
+
+/* Define to `int' if <sys/types.h> does not define. */
+#undef pid_t
+
+/* Define to `unsigned int' if <sys/types.h> does not define. */
+#undef size_t
+
+/* Define as `fork' if `vfork' does not work. */
+#undef vfork

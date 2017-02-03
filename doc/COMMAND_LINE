@@ -1,0 +1,98 @@
+Status flags:
+---------------
+! : not used
+- : used without arg
++ : used with argument
+* : used with optional argument
+# : obsolete
+---------------
+letters usage:
+---------------
+a * alteration of operation             --alter   argument: s[aved] | SI[-unit[s]] | binary[-unit[s]] | a[time] | c[time] | m[ask] | n[o-case] | case | r[egex] | g[lob] | e[rase_ea] | k[eep-compressed] | f[ixed-date] | d[ecremental] | l[axist] | t[ape-marks] | h[oles-recheck] | secu | list-ea | i[gnore-unknown-inode-type] | do-not-compare-symlink-mtime | test-self-reported-bug | b[lind-to-signatures]
+b - terminal bell                       --bell
+c + create archive                      --create
+d + difference with filesystem          --diff
+e - simulate the operation              --empty (aka dry-run)
+f - do not restore directory structure  --flat
+g + recurse in this directory           --go-into
+h - help usage                          --help
+i + path of the input pipe              --input
+j !   OBSOLETE was --jog, removed in 2.5.0
+k + do not deleted files drop between two backups --no-delete / --deleted { ignore | only }
+l + list archive contents               --list
+m + minimum size below which no compression will occur. --mincompr a default value is used. use -m 0 if you want to compress in any case.
+n - do not allow overwriting            --no-overwrite
+o + path of the output pipe             --output
+p + pause before creating new slice     --pause
+q - suppress final statistics report    --quiet
+r - do not overwrite more recent file   --recent [=date] (to implement)
+s + size of slice                       --slice
+t + test archive structure              --test
+u + exclude EA from operation (mask)    --exclude-ea
+v + verbose output                      --verbose   --verbose={skipped|treated|messages|dir|all}
+w * do not warn before overwriting      --no-warn
+x + extract archive                     --extract
+y !  OBSOLETE was --bzip2, removed in 2.5.0
+z * compression                         --gzip --compress
+A + make a differential backup          --ref
+B + filename taken as command-line extension --config
+C + extract catalogue in separated file --isolate
+D - store excluded dir as empty dir     --empty-dir
+E + shell command to launch with slices --execute
+F + shell command to launch with slices of archive of reference   --execute-ref
+G - forbid the use of multi threads when compiled against libthreadar --single-thread
+H * if a file for differential backup or diff differs from exactly one hour it is assumed as identical (no change).
+I + include mask                        --include
+J + key for unscrambling the reference catalogue --key-ref
+K + key for un/scrambling               --key
+L - license information
+M - only consider what is under the current mounting point. --no-mount-points
+N - do not read any configuration file ~/.darrc or /etc/darrc
+O + ignore user Id and group Id         --ignore-owner
+P + prune a directory tree              --prune
+Q + quite on stderr at startup		no long option equivalent
+R + set the root directory              --root
+S + size of the first slice             --first-slice
+T + tree listing format                 --tree-format, --list-format=<normal|tree|xml>
+U + include EA for the operation (mask) --include-ea
+V - version information                 --version
+W - warranty disclosure information (POSIX RESERVED, sorry)
+X + exclude mask                        --exclude
+Y + included only filename for compression --include-compression
+Z + excluded filename from compression  --exclude-compression
+  - don't save files with nodump flag set --nodump
+# + encryption block size                 --crypto-block
+* + encryption block size for the archive of reference --crypto-block-ref
+, - cache directory tagging standard    --cache-directory-tagging
+[ + include files listed in given file   --include-from-file
+] + exclude files listed in given file   --exclude-from-file
+- x (forbidden by getopt)
+? x (forbidden by getopt)
+: x (forbidden by getopt)
++ + merging operation                    --merge
+@ + second reference archive for merging --aux-ref
+$ + key for auxilliary refence archive   --aux-key
+~ + command to execute between slices    --aux-execute
+% + encryption block size for the auxilliary archive of reference --aux-crypto-block
+/ + policy to solve overwriting conflict --overwriting-policy
+^ + ownership and permission of generated slices --slice-mode
+_ + retry on change                      --retry-on-change <count[:max byte]>
+{ !
+} !
+0 * sequential read of the archive       --sequential-read
+1 + sparse-file detection tunning        --sparse-file-min-size <int>
+2 + dirty file behavior                  --dirty-behavior {ignore|no-warn}
+3 + create a hash algorithm (+algo)      --hash <algo>
+4 + filesystem specific attr. family     --fsa-scope <fam1,fam2,fam3,...>
+5 + exclude file having a given EA set   --exclude-by-ea [<ea name>]
+6 !
+7 + define keys used to sign the archive --sign <comma separated list of emails>
+8 !
+9 + min_digits                           --min-digits archive[,ref[,aux]];
+" + anonymous pipe descriptor to read conf from. --pipe-fd
+. + user comment                         --user-comment
+; x (forbidden by getopt)
+< + backup hook mask                     --backup-hook-include
+> + backup hook mask                     --backup-hook-exclude
+= + backup hook execute                  --backup-hook-execute
+\ !

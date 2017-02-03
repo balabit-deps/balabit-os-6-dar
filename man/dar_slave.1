@@ -1,0 +1,67 @@
+.TH DAR_SLAVE 1 "May 17th, 2015"
+.UC 8
+.SH NAME
+dar_slave \- disk archive slave for remote access to a dar archive
+.SH SYNOPSIS
+dar_slave [options] [<path>/]source
+.P
+dar_slave -h
+.P
+dar_slave -V
+.SH DESCRIPTION
+.B dar_slave
+reads an archive and listens for
+.B dar
+orders on standard input, sending asked parts of the archive on standard output.
+.PP
+Source is the basename of the archive to read. By default,
+.B dar_slave
+uses standard input and output to communicate with a
+.B dar
+process, which may be running on the local host or on a remote host. It is possible to change the behavior of
+.B dar_slave
+to use named pipe instead of standard input and output
+
+.SH OPTIONS
+
+.PP
+.TP 20
+-h
+Displays help usage.
+.TP 20
+-V
+Displays version information.
+.TP 20
+-i <filename>
+reads the orders from the named file instead of standard input. In most cases the filename will be a named pipe.
+.TP 20
+-o <filename>
+sends the data to the named file <filename> instead of standard output. In most cases the filename will be a named pipe.
+.TP 20
+-E <string>
+string is a command to be launched between slices. See dar(1) man page (same option) for more information.
+.TP 20
+-Q
+Do not display any message on stderr when not launched from a terminal (for example when launched from an at job or crontab). Remains that any question to the user will be assumed a 'no' answer, which most of the time will abort the program.
+.TP 20
+-9 <num>
+Defines the minimum number of digits to use for archive slice numbers. See the same option in dar man page for more details.
+.SH EXIT CODES
+.B dar_slaves
+exists with the same codes as dar does, see dar(1) man page.
+
+.SH SIGNALS
+Any signal sent to dar_slave will abort the program immediately, there is no way to have a proper termination before the end of the process
+
+.SH SEE ALSO
+dar(1), dar_xform(1), dar_manager(1), dar_cp(1), dar_split(1)
+
+.SH KNOWN BUGS
+http://sourceforge.net/p/dar/bugs/
+
+.SH AUTHOR
+.nf
+http://dar.linux.free.fr/
+Denis Corbin
+France
+Europe

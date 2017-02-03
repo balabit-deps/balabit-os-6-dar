@@ -1,0 +1,652 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+
+
+
+
+
+
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Dar's Documentation - Compiling From Source</title></head><body style="background-color: rgb(221, 221, 221); color: rgb(0, 0, 170);" alink="#ff0000" link="#0000ff" vlink="#000055">
+<center>
+<div style="text-align: center;">
+<table style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px;"><a href="index.html"><img style="border: 0px solid ; width: 160px; height: 120px;" alt="Dar Documentation" src="dar_s_doc.jpg"></a><br>
+      </td>
+      <td style="vertical-align: top;">
+      <h1 style="text-align: center;"><br>
+      </h1>
+      <h1 style="text-align: center;">HOW TO COMPILE DAR AND LIBDAR<br>
+      </h1>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<span style="font-weight: bold;"><br>
+</span>
+<hr style="width: 100%; height: 2px;"></center>
+
+<br>
+
+<br>
+
+<table style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <h3 style="font-weight: bold; text-decoration: underline;"><a name="requirements"></a>1 - Requirements</h3>
+      <br>
+      <div style="margin-left: 40px;">To
+compile dar from a source package (from GIT <a href="#GIT">see below</a>
+for additional steps)
+	<span style="font-weight: bold;">you need at least</span>:<br>
+      </div>
+      <ol style="margin-left: 40px; text-align: justify;">
+        <li>a C++ compiler supporting g++11 syntax (for <a href="http://gcc.gnu.org/">gcc</a>
+that means version 4.8. minimum, <a href="http://clang.llvm.org/">clang</a> is also supported). For version older than dar-2.5.0
+g++11 support is not required but if using gcc you need at least
+version 3.4.x. A standard C++ library is also required, compilation has been tested with libc++ and stdlibc++.<br>
+</li>
+        <li>a linker like "ld" the <a href="http://www.gnu.org/software/binutils/">GNU Linker</a><br>
+        </li>
+        <li>make (tested with <a href="http://www.gnu.org/software/make/">gnu make</a>)</li>
+      </ol>
+      <div style="text-align: justify;"> </div>
+      <div style="margin-left: 40px; text-align: justify;"><br>
+In option you <span style="font-weight: bold;">may also have</span>
+installed
+the following tools and libraries:<br>
+      </div>
+      <div style="text-align: justify;"> </div>
+      <ul style="margin-left: 40px; text-align: justify;">
+        <li><a href="http://www.gzip.org/zlib/">libz library</a> for
+gzip compression support
+        </li>
+        <li style="text-align: justify;"><a href="http://sources.redhat.com/bzip2/">libbzip2 library</a> for bzip2
+compression support</li>
+        <li style="text-align: justify;"><a href="http://www.oberhumer.com/opensource/lzo/">liblzo2 library</a>
+for lzo compression support</li>
+        <li style="text-align: justify;"><a href="http://tukaani.org/xz/">liblzma5 library</a> for xz/lzma compression support<br>
+        </li>
+
+        <li style="text-align: justify;">gnu Getopt support (Linux has
+it for all distro thanks to
+its glibc, this is not true for FreeBSD for example)</li>
+        <li style="text-align: justify;"><a href="http://www.gnupg.org/related_software/libraries.en.html">libgcryt</a>
+version 1.4.0 or greater for symetric strong encryption (blowfish, aes,
+etc.) and hash (sha1, md5) support</li>
+        <li style="text-align: justify;"><a href="https://www.gnupg.org/">gpgme</a> library version 1.2.0 or greater for asymetric strong encryption and signature (RSA, DSA, etc.)<br>
+        </li>
+
+        <li style="text-align: justify;"><a href="http://www.stack.nl/%7Edimitri/doxygen/index.html">doxygen</a>
+for generation of source code documentation</li>
+        <li><a href="http://upx.sourceforge.net/">upx</a> to generate
+dar_suite upx compressed binaries</li>
+        <li><a href="http://www.gnu.org/software/groff/groff.html">groff</a>
+to generate html version of man pages <br>
+</li>
+        <li><a href="http://libthreadar.sourceforge.net/">libthreadar</a> for libdar using several threads (experimental feature, poor performance gain, avoid using it)<br>
+        </li>
+
+      </ul>
+      <div style="margin-left: 40px;"><br>
+The consequences of building dar without these optional tools are the
+following:<br>
+      </div>
+      <ul style="margin-left: 40px; text-align: justify;">
+        <li>If you lack <span style="font-weight: bold;">libz</span>
+library, dar will compile but will not be able to compress or
+uncompress an archive using the gzip algorithm</li>
+        <li>If you lack <span style="font-weight: bold;">libbzip2</span>
+library dar will compile but will not be able to compress or uncompress
+an archive using the bzip2 algorithm</li>
+        <li>If you lack <span style="font-weight: bold;">liblzo2</span>
+library dar will compile but will not be able to compress or uncompress
+an archive using the lzo algorithm</li>
+        <li>if you lack <span style="font-weight: bold;">liblzma5 </span>library dar will compile but will not be able to compress or uncompress an archive using the xz algorithm<br>
+        </li>
+
+        <li>If you lack <span style="font-weight: bold;">libgcrypt </span>dar
+will still compile but you will not be able to use strong encryption
+nor hash file generation for each slice</li>
+        
+
+        <li>if you lack <span style="font-weight: bold;">gpgme</span> dar will still compile but you will not be able to use strong encryption and signature with public keys<br>
+        </li><li>If you lack <span style="font-weight: bold;">Doxygen</span>
+dar will still compile but you will not have the reference
+documentation for libdar after calling <span style="font-style: italic;">make</span></li>
+        <li>If you lack <span style="font-weight: bold;">upx</span>
+dar will still compile but the resulting binary will not be compressed
+after calling <span style="font-style: italic;">make install-strip</span></li>
+        <li><span style="font-style: italic;"><span style="font-style: italic;"><span style="font-style: italic;"></span></span></span>If
+you lack <span style="font-weight: bold;">groff</span> dar will not
+generate man pages in html format</li>
+        <li>if you lack <span style="font-weight: bold;">libthreadar</span> libdar will execute each action in a single thread<br>
+        </li>
+
+      </ul>
+      <div style="text-align: justify;"><br>
+      <div style="margin-left: 40px;"> </div>
+      </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<div style="text-align: center;"><br>
+</div>
+
+<table style="text-align: left; width: 90%; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <h3><a name="compiling"></a><span style="font-weight: bold; text-decoration: underline;">2 - Compilation
+in brief</span></h3>
+      <br>
+      <div style="margin-left: 40px;">Once you have the minimum <a href="#requirements">requirements</a>, Dar has to be compiled from
+source code in
+the following way:<br>
+      </div>
+      <div style="margin-left: 80px;"><br>
+      <code>./configure <a href="#configure_options">[eventually with
+some options]</a><br>
+make<br>
+make install-strip<br>
+      </code></div>
+      <div style="margin-left: 40px;"><br>
+      </div>
+      <div style="text-align: justify; margin-left: 40px;"><span style="font-weight: bold;">Important:</span>
+due to a bug in the autoconf/libtool softwares used to build the
+configure script you must not have spaces in the name of the path where
+are extracted dar' sources. You can install dar binary anywhere you
+want, the problem&nbsp; does not concern dar itself but the ./configure
+script used to build dar: To work properly it must not be ran from a
+path which has a space in it.<br>
+      </div>
+      <div style="text-align: justify; margin-left: 40px;"><span style="font-weight: bold;">Important
+too: </span>By default the configure script set optimization to -O2,
+depending on the compiler this may lead to problems in the resulting
+binary (or even in the compilation process), before reporting a bug try
+first to compile with less optimization:<br>
+      </div>
+      <div style="margin-left: 40px;"><br>
+      </div>
+      <div style="margin-left: 80px;"><code>CXXFLAGS=-O</code><br>
+      <code>export CXXFLAGS</code><br>
+      <code>make clean distclean</code><br>
+      <code>./configure [<a href="#configure_options">options...</a>]<br>
+make<br>
+      </code><code>make install-strip</code><br>
+      </div>
+      <div style="margin-left: 40px;"><br>
+The configure script may receive several options, they are listed <a href="#configure_options">here</a>.<br>
+      <br>
+Note for packagers that the DESTDIR variable may be set at installation
+time to install dar in another directory. This makes the creation of
+dar binary packages very easy. Here is an example<br>
+      <br>
+      </div>
+      <div style="margin-left: 80px;"><code>./configure --prefix=/usr
+[eventually
+with some options]</code><br>
+      <code></code><code>make</code><br>
+      <code>make DESTDIR=/some/where install-strip<br>
+      <br>
+      </code></div>
+      <div style="margin-left: 40px;">This will install dar in
+/some/where/usr/{bin | lib | ...}
+directories. You can build a package from files under /some/where and
+install/remove the package at the root of your filesystem (thus here
+files will go in /usr/{bin | lib | ... }).<br>
+      </div>
+      <span style="font-weight: bold;"><br>
+      <br>
+      <br>
+      </span>
+      <h3><a name="configure_options"></a><span style="font-weight: bold; text-decoration: underline;">3 - Options for
+the configure script</span></h3>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<span style="font-weight: bold; text-decoration: underline;"><br>
+</span>
+<br>
+
+<table style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="10">
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 33%;"><br>
+      </td>
+      <td style="vertical-align: top; font-weight: bold;">
+      <h3>Available options for the
+configure script</h3>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 33%;"><span style="text-decoration: underline;">Optimization option:</span><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">&nbsp;--enable-mode</td>
+      <td style="vertical-align: top;">&nbsp;--enable-mode=32 or
+--enable-mode=64<br>
+      <div style="text-align: justify; margin-left: 40px;">if set,
+replace "infinint" integers by 32 or 64 bits integers. This makes a
+faster
+executable and less fond of memory, but with several restrictions
+(about for example ability to handle large files, or high dates. See
+the <a href="Limitations.html#Integers">limitations</a> for more). Note that 64 bits integers are available on 32 bits CPU plateforms.<br>
+      </div>
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 33%;"><span style="text-decoration: underline;">Deactivation options:</span><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--disable-largefile</td>
+      <td style="vertical-align: top;">Whatever your system is, dar
+will not be able to handle file of size larger than 4GB<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--disable-ea-support<br>
+      </td>
+      <td style="vertical-align: top;">Whatever your system is, dar
+will not be able to save or restore Extended Attributes (see the Notes
+paragraphs<a href="Notes.html#I"> I</a> and <a href="Notes.html#V">V</a>)<br>
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--disable-nodump-flag<br>
+      </td>
+      <td style="vertical-align: top;">Whatever your system is, dar
+will not be able to take care of the nodump-flag (thanks to the
+--nodump option)<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--disable-dar-static<br>
+      </td>
+      <td style="vertical-align: top;"><span style="font-style: italic;">dar_static</span>
+binary (statically linked version of dar) will not be built<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--disable-special-alloc<br>
+      </td>
+      <td style="vertical-align: top; text-align: justify;">dar uses a
+special allocation scheme by default (gather the many small allocations
+in big fewer ones), this improves dar's execution speed<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--disable-upx<br>
+      </td>
+      <td style="vertical-align: top;">If <span style="font-style: italic;">upx</span> is found in the PATH, binary
+are upx compressed at installation step. This can be disabled by this
+option, when upx is available and you don't want compressed binaries.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--disable-gnugetopt<br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;on non GNU systems
+(Solaris, etc.) configure looks for libgnugetopt to have the long
+options support thanks to the gnu getopt_long() call, this can be
+disabled.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--disable-thread-safe<br>
+      </td>
+      <td style="vertical-align: top; text-align: justify;">&nbsp;libdar
+may need <span style="font-style: italic;">POSIX mutex</span> to be
+thread safe. If you don't want libdar relaying on <span style="font-style: italic;">POSIX mutex</span> even if they are
+available, use this option. The resulting library may not be thread
+safe. But it will always be thread safe if you use
+--disable-special-alloc, and it will never be thread safe if
+--enable-test-memory is used.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right;">--disable-libdl-linking<br>
+      </td>
+      <td style="vertical-align: top;">Ignore any libdl library and
+avoid linking with it<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--disable-libz-linking<br>
+      </td>
+      <td style="vertical-align: top;">Disable linking to libz, thus
+-zgzip:*
+option (gzip compression) will not be available<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--disable-libbz2-linking<br>
+      </td>
+      <td style="vertical-align: top;">Disable linking to libbz2, thus
+-zbzip2:* option (libbz2 compression) will not be available<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right;">--disable-liblzo2-linking<br>
+      </td>
+      <td style="vertical-align: top;">Disable linking to liblzo2, thus
+-zlzo:* option (lzo compression) will not be available<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right;">--disable-libxz-linking<br>
+      </td>
+      <td style="vertical-align: top;">Disable linking to liblzma5 this -zxz:* option (xz compression) will not be available<br>
+      </td>
+    </tr>
+<tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--disable-libgcrypt-linking<br>
+      </td>
+      <td style="vertical-align: top; text-align: justify;">Disable
+linking with libgcrypt library. Strong encryption will not be
+available neither a hashing of generated slices.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right;">--disable-gpgme-linking<br>
+      </td>
+      <td style="vertical-align: top;">Disable
+linking with gpgme library. Asymetric strong encryption algorithms will not be available<br>
+      </td>
+    </tr>
+<tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--disable-build-html<br>
+      </td>
+      <td style="vertical-align: top;">Do not build API documentation
+reference with Doxygen (when it is available)<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right;">--disable-furtive-read<br>
+      </td>
+      <td style="vertical-align: top;">Do not try to detect whether the
+system does support furtive read mode. This will lead furtive read
+mode to stay disabled in any case.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right;">&nbsp;--disable-fast-dir<br>
+      </td>
+      <td style="vertical-align: top;">Disable optimization for large
+directories, doing so has a little positive impact on memory
+requirement but a huge drawback on execution time<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right;">--disable-execinfo<br>
+      </td>
+      <td style="vertical-align: top;">Disable reporting stack
+information on self diagnostic bugs even<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right;">--disable-threadar<br>
+      </td>
+      <td style="vertical-align: top;">Avoid linking with libthreadar even if available, libdar will not create threads<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right;">--disable-birthtime<br>
+      </td>
+      <td style="vertical-align: top;">disable the HFS+ Filesystem Specific Attribute support<br>
+      </td>
+    </tr>
+<tr>
+      <td style="vertical-align: top; width: 33%;"><span style="text-decoration: underline;">Troubleshooting option:</span><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--enable-os-bits<br>
+      </td>
+      <td style="vertical-align: top; text-align: justify;">If set, dar
+uses the given argument (32 or 64) to determine which integer type to
+use. This much match your CPU register size. By default dar uses the
+system &lt;stdint.h&gt; file to determine the correct integer type to
+use<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 33%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 33%;"><span style="text-decoration: underline;">Debugging options:</span><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--enable-examples<br>
+      </td>
+      <td style="vertical-align: top; text-align: justify;">If set,
+example programs based on infinint will also be built<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--enable-debug<br>
+      </td>
+      <td style="vertical-align: top;">If set, use debug compilation
+option, and if possible statically link binaries<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--enable-pedantic<br>
+      </td>
+      <td style="vertical-align: top; text-align: justify;">If set,
+transmits the -pedantic option to the compiler<br>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="vertical-align: top; text-align: right; width: 33%;">--enable-profiling<br>
+      </td>
+      <td style="vertical-align: top;">Enable executable profiling<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: right;">--enable-debug-memory<br>
+      </td>
+      <td style="vertical-align: top;">If set, logs all memory
+allocations and releases to /tmp/dar_debug_mem_allocation.txt&nbsp; .
+The
+resulting executable is expected to be very slow<span style="font-weight: bold;"></span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<br>
+
+<table style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; text-align: justify;">
+      <h3 style="text-decoration: underline;"><a name="GIT"></a>4 - GIT</h3>
+      <h3><br>
+      </h3>
+      <h3 style="margin-left: 40px;">Presentation</h3>
+      <div style="margin-left: 80px;">To manage its source code
+versions DAR uses GIT (it used CVS up to Q1 2012).<br>
+      </div>
+      <h3 style="margin-left: 40px;">Dar's repository Organization</h3>
+      <div style="margin-left: 80px;">GIT (more than CVS) eases the use
+of branches. In dar repository, there are thus a lot of them: the first
+and main one is called "master". It contains current development and
+most probably unstable code. There are other permanent branches that
+hold stable code. They are all named by "<span style="font-weight: bold;">branch_A.B.x</span>" where A and B are the
+numbers corresponding to a released versions family. For example, "<span style="font-weight: bold;">branch_2.5.x</span>" holds the stable code
+for releases 2.5.0, 2.5.1, 2.5.2 and so on. <span style="text-decoration: underline;">It also holds pending fixes for
+the next release on that branch you might be interested in.</span> <br>
+      <br>
+The global organisation of the repository is thus the following:<br>
+&nbsp;<br>
+      <code>&nbsp;<br>
+&nbsp;(HEAD of "master" branch)<br>
+&nbsp;&nbsp;&nbsp; new feature 101<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp; new feature 100<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp; new feature 99<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +---&gt;-- fix
+901 -&gt;- fix 902 (release 2.4.1) -&gt;- fix 903 -&gt;- fix 904
+(release 2.4.2) -&gt;- fix 905 (HEAD of branch_2.4.x)<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp; new feature 98<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp; new feature 97<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; +---&gt;-- fix 801 -&gt;-
+fix 802 (release 2.3.1) (also HEAD of branch_2.3.x as no pending fix is
+waiting for release)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp; initial version<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ____<br>
+      </code>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+      <br>
+      </div>
+      <h3 style="margin-left: 40px;">Usage</h3>
+      <div style="margin-left: 80px;">To get dar source code from GIT
+you have first to <span style="font-weight: bold;">clone</span> the
+repository hosted at sourceforge:<br>
+      <br>
+      </div>
+      <div style="margin-left: 120px;"><span style="font-family: monospace;"></span><code>git clone git://git.code.sf.net/p/dar/code dar-code<br>
+cd dar-code<br>
+      </code> </div>
+      <div style="margin-left: 80px;"><br>
+You will probably not want to use current development code so you have
+to change from the branch <span style="font-style: italic;">master</span>
+to the branch "branch_A.B.x" of you choice:<br>
+      <br>
+      </div>
+      <div style="margin-left: 120px;"><code></code><code>git checkout
+branch_2.5.x<br>
+      </code> </div>
+      <div style="margin-left: 80px;"><br>
+That's all. You now have the most recent stable code (for branch_2.4.x
+in this example). To see what changes have been brought since the last
+release, use the following command:<br>
+      <br>
+      </div>
+      <div style="margin-left: 120px;"><code>git log</code><br>
+      </div>
+      <div style="margin-left: 80px;">&nbsp;<br>
+If you plan to keep the repository you've cloned, updating the change
+is as easy as using (no need to clone the repository from scratch
+again):&nbsp; <code></code><br>
+      <br>
+      </div>
+      <div style="margin-left: 120px;"><code>git pull origin branch_2.5.x</code><code></code>
+      </div>
+      <div style="margin-left: 80px;"><br>
+There is also a web interface to git: <a href="http://sourceforge.net/p/dar/code/">gitweb</a><br>
+      </div>
+      <h3 style="margin-left: 40px;"><span style="font-weight: bold;">Having
+the sources ready for compilation</span></h3>
+      <div style="margin-left: 80px;"><span style="font-family: monospace;"></span>Please
+read the fiile named "USING_SOURCE_FROM_GIT" located at the root of the
+directory tree you retrieved through GIT, it contains up to date
+information about the required tools and how to generate the
+configuration file. Then you can proceed to source compilation as <a href="#compiling">done with regular source package</a>. <br>
+      </div>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<table style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold; text-decoration: underline;"></span>
+      <div style="text-align: justify;">
+      <h3><a style="font-weight: bold; text-decoration: underline;" name="Tools_sites">5 - Related Softwares</a></h3>
+      <blockquote>
+        <ul>
+          <li><a href="http://www.gnu.org/software/tar/tar.html">TAR
+home
+page</a> (DAR's grant and venerable brother) </li>
+          <li><a href="http://acl.bestbits.at/">Extended Attributes</a>
+home page </li>
+          
+          <li><a href="http://www.gnupg.org/">GNU Privacy Guard</a>
+home
+page </li>
+          <li><a href="http://cygwin.com/">Cygwin</a> home page </li>
+          <li><a href="http://parchive.sourceforge.net/">Parchive</a>
+home
+page and <a href="https://github.com/BlackIkeEagle/par2cmdline">https://github.com/BlackIkeEagle/par2cmdline</a>
+(fork from the official site maintained since decembre 2013) </li>
+          <li><a href="http://upx.sourceforge.net/">the Ultimate Packer
+for
+eXecutables</a> home page </li>
+          <li><a href="http://www.doxygen.org/">Doxygen</a> home page</li>
+          <li><a href="http://www.gnu.org/software/groff/groff.html">Groff</a>
+home page</li>
+          <li><a href="http://www.gnu.org/software/make/">Gnu Make</a>
+home page</li>
+          <li><a href="http://gcc.gnu.org/">GCC</a> home page<br>
+          </li>
+        </ul>
+      </blockquote>
+      <br>
+      </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<br>
+
+
+</body></html>
